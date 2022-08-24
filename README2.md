@@ -1,11 +1,9 @@
 
-function generateMarkdown(data) {
-    return `
     
-    # ${data.Title}
+    # The Awesome Project
 
     ## Description:
-    ${data.BriefDescription}
+    This Project is designed to create a README quick and easy.
 
     
     
@@ -20,23 +18,20 @@ function generateMarkdown(data) {
 
 
     ## Installation
-    ${data.ToInstall}
+    node
 
     ## Usage:
-    ${data.TechnologiesUsed}
+    Node, Javascript
     
     ## License:
-    ${data.License}
+    License
     
     ## Contributing:
-    ${data.Contributing}
+    McKinley Faustin
     
     ## Tests:
-    ${data.Tests}
+    Tested everything
 
     ## Questions:
-    ${data.Questions}
-    `
-}
-
-module.exports = generateMarkdown;
+    questions for me?
+    

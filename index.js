@@ -2,14 +2,15 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require("util");
 
-const generatorMarkdown = require('./generateMarkdown.js');
+const generateMarkdown = require('./generateMarkdown.js');
 const { title } = require('process');
 const { Console } = require('console');
 console.log("Mack's README's Generator")
 console.log("Answer the questions below to create your own personal README")
 
 
-const questions = [{
+const questions = [
+{
     type: "input",
     message: "Title of your project",
     name: "Title",
@@ -27,7 +28,7 @@ const questions = [{
 {
     type: "input",
     message: "Brief description of your project",
-    name: "Brief Descriptions",
+    name: 'BriefDescription',
     validate: your_Description => {
         if (your_Description) {
             return true;
@@ -42,7 +43,7 @@ const questions = [{
 {
     type: "input",
     message: "Technologies Used",
-    name: "Technologies Used",
+    name: "TechnologiesUsed",
     validate: your_Technology => {
         if (your_Technology) {
             return true;
@@ -57,7 +58,7 @@ const questions = [{
 {
     type: "input",
     message: "How to Install",
-    name: "To Install",
+    name: "ToInstall",
     validate: your_Install => {
         if (your_Install) {
             return true;
@@ -71,15 +72,60 @@ const questions = [{
 },
 {
     type: "input",
-    message: "github info",
-    name: "Github",
-    validate: your_github => {
-        if (your_github) {
+    message: "License",
+    name: "License",
+    validate: your_License => {
+        if (your_License) {
             return true;
         }
         else
         {
-            console.log("Enter your Github information.");
+            console.log("Enter your Licenses.");
+            return false;
+        }
+    }
+},
+{
+    type: "input",
+    message: "Contributing",
+    name: 'Contributing',
+    validate: your_Contributing => {
+        if (your_Contributing) {
+            return true;
+        }
+        else
+        {
+            console.log("Enter everyone's contribution");
+            return false;
+        }
+    }
+},
+{
+    type: "input",
+    message: "Tests",
+    name: 'Tests',
+    validate: your_Tests => {
+        if (your_Tests) {
+            return true;
+        }
+        else
+        {
+            console.log("Enter a test instructions");
+            return false;
+        }
+    }
+},
+{
+    type: "input",
+    message: "Questions",
+    name: 'Questions',
+    validate: your_Questions => {
+        if (your_Questions) {
+            return true;
+        }
+        else
+        {
+            console.log("Enter your questions");
             return false;
         }
     }
@@ -92,18 +138,18 @@ function writeToFile(fileName, data) {
         if (err) {
             return console.log(err);
         }
-        Console.log("You're Done!");
+        console.log("You're Done!");
     });
 }
 
 // TODO: Create a function to initialize app
 function init() {
-    inquirer.prompt(questions)
-    .then(function (userInput) {
-        console.log(userInput)
-        writeToFile("README.md", generateMarkdown(userInput));
-    });
+    return inquirer.prompt(questions);
 };
 
 // Function call to initialize app
-init();
+init()
+.then(function (userInput) {
+        console.log('The userInput is', userInput);
+        writeToFile("README2.md", generateMarkdown(userInput));
+});
